@@ -136,7 +136,7 @@ function App() {
         </div>
         <div class="grid grid-cols-1 gap-4 md:hidden min-w-full border border-black p-3">
           <div class="bg-amber-50 space-y-2 p-2 capitalize rounded-xl shadow-2xl border-2 border-green-300 sticky top-3 text-teal-900 font-bold">
-            <div>Total Quantity: {increaseCount(items)}</div>
+            <div>Total Quantity : {increaseCount(items)}</div>
             <div>Total Amount : {incrementTotal(items)}</div>
           </div>
           {items.map((item, idx) => (
