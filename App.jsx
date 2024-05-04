@@ -120,7 +120,7 @@ function App() {
                   <td class="p-3 text-sm text-gray-700 whitespace-nowrap">
                     RS. {item.cost}
                   </td>
-                  <td class="p-3 text-sm text-gray-700 whitespace-nowrap ">
+                  <td class="p-3 text-sm text-gray-750 whitespace-nowrap ">
                     {item.quantity * item.cost}
                   </td>
                   <td>
