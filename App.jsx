@@ -47,7 +47,7 @@ function App() {
   }
   function decrement(idx) {
     const newItems = [...items];
-    newItems[idx].quantity >= 1 ? (newItems[idx].quantity -= 1) : "";
+    newItems[idx].quantity >= 1 ? (newItems[idx].quantity -= 1) : " ";
     setItems(newItems);
     decreseCount(items);
     decrementTotal(items);
