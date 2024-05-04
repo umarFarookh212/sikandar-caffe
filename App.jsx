@@ -29,7 +29,7 @@ function App() {
     },
     {
       item: "lemon tea",
-      cost: 15,
+      cost: 18,
       quantity: 0,
     },
     {
