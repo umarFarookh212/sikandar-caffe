@@ -98,7 +98,7 @@ function App() {
   }
   return (
     <>
-      <div class="p-5 min-h-full mx-2">
+      <div class="p-5 min-h-full mx-3">
         <div>
           <div class="overflow-auto hidden md:block shadow-lg shadow-indigo-400/90 max-w-2xl mx-44">
             <table class="border- border-blue max-w-2xl">
