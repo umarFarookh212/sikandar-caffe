@@ -57,45 +57,20 @@ function App() {
     const newItems = [...items];
     newItems[idx].quantity += 1;
     setItems(newItems);
-    increaseQuantity(items);
-    incrementTotal(items);
   }
   function decrement(idx) {
     const newItems = [...items];
     newItems[idx].quantity >= 1 ? (newItems[idx].quantity -= 1) : " ";
     setItems(newItems);
-    decreaseQuantity(items);
-    decrementTotal(items);
   }
-  function increaseQuantity(items) {
-    let totalCount = 0;
-    for (const item of items) {
-      totalCount += item.quantity;
-    }
-    return totalCount;
-  }
-  function decreaseQuantity(items) {
-    let totalCount = 0;
-    for (const item of items) {
-      totalCount -= item.quantity;
-    }
-    return totalCount;
-  }
-  function incrementTotal(items) {
-    let totalItemCost = 0;
-    for (const item of items) {
-      totalItemCost += item.cost * item.quantity;
-    }
-    console.log(totalItemCost);
-    return totalItemCost;
-  }
-  function decrementTotal(items) {
-    let totalItemCost = 0;
-    items.map((item) => {
-      totalItemCost -= item.cost * item.quantity;
-    });
-    return totalItemCost;
-  }
+
+  const total = items.reduce(
+    (previous, item) => previous + item.cost * item.quantity,
+    0
+  );
+  const quantity = items
+    .filter((item) => item.quantity > 0)
+    .reduce((sum, item) => sum + item.quantity, 0);
   return (
     <>
       <div class="p-5 min-h-full mx-3">
@@ -124,12 +99,12 @@ function App() {
                       <td>
                         <button
                           onClick={() => decrement(idx)}
-                          class="rounded-full bg-blue-950 min-w-7 min-h-7 text-center text-cyan-100 font-bold text-xl"
+                          class="rounded-full bg-blue-950 min-w-7 min-h-7 text-center text-white font-bold text-xl "
                         >
                           -
                         </button>
                       </td>
-                      <td class="p-3 text-sm">{item.quantity}</td>
+                      <td class="p-3 text-md">{item.quantity}</td>
                       <td>
                         <button
                           onClick={() => increment(idx)}
@@ -145,39 +120,44 @@ function App() {
             </table>
           </div>
         </div>
-        <div class="bg-transparent  rounded-3xl shadow-2xl border-2 border-blue-600 sticky bottom-5 font-bold max-w-lg hidden md:block">
-          <div class="flex flex-col content-end space-y-2 p-2">
-            <div class="bg-slate-300 w-44 px-3  rounded-3xl">
-              Total Quantity : {increaseQuantity(items)}
+        <div class="rounded-3xl shadow-2xl border-2 border-blue-600 sticky bottom-5 font-bold max-w-lg hidden md:block backdrop-blur-sm bg-white/10">
+          <div class="flex flex-col content-end space-y-2 p-2 justify-items-end">
+            <div class="bg-slate-300 w-44 px-3 rounded-3xl">
+              Total Quantity : {quantity}
             </div>
             <div class="bg-slate-300 w-44 px-3 rounded-3xl">
-              Total Amount : ₹{incrementTotal(items)}
+              Total Amount : ₹{total}
             </div>
           </div>
         </div>
         {/*  */}
         {/* mobile app */}
         {/*  */}
-        <div class="grid grid-cols-1 gap-2 md:hidden min-w-full border-2 border-black rounded-3xl p-2">
-          <div class="bg-amber-50 space-y-2 p-2 capitalize rounded-xl shadow-2xl border-2 border-green-600 sticky top-3 text-teal-900 font-semibold">
-            <div>Total Quantity : {increaseQuantity(items)}</div>
-            <div>Total Amount : ₹{incrementTotal(items)}</div>
+        <div class="grid grid-cols-1 gap-2 md:hidden min-w-full border-2 border-indigo-900 rounded-2xl p-2 shadow-indigo-950/45">
+          <div class="backdrop-blur-sm bg-white/50 space-y-2 p-2 rounded-xl shadow-indigo-400/90 border-2 border-indigo-900 sticky top-3 text-green-800 font-bold">
+            <div>Total Quantity : {quantity}</div>
+            <div>Total Amount : ₹{total}</div>
           </div>
           {items.map((item, idx) => (
-            <div class="bg-white space-y-4 p-4 rounded-2xl shadow-xl border-2 border-sky-900">
+            <div class="bg-white space-y-4 p-4 rounded-2xl  border-2 border-indigo-300">
               <div class="flex justify-between items-center space-x-2">
-                {/* <div class=>
-                  {1 + idx}
-                </div> */}
-                <div class="font-medium font-serif text-black uppercase w-36  hover:italic  ">
+                <div class="font-bold font-mono tracking-wider text-black uppercase w-36">
                   {item.item}
                 </div>
-                <div class="flex text-xl w-28 rounded-2xl bg-red-300	">
-                  <button class="w-32" onClick={() => decrement(idx)}>
+                <div class="flex text-xl w-28 ">
+                  <button
+                    class="w-10 bg-red-500 rounded-full text-cyan-100"
+                    onClick={() => decrement(idx)}
+                  >
                     -
                   </button>
-                  <div class="text-black-700 w-22">{item.quantity}</div>
-                  <button class="w-32" onClick={() => increment(idx)}>
+                  <div class="text-black-700 w-10 flex justify-center">
+                    {item.quantity}
+                  </div>
+                  <button
+                    class="w-10 bg-red-500 rounded-full text-cyan-100"
+                    onClick={() => increment(idx)}
+                  >
                     +
                   </button>
                 </div>
@@ -187,7 +167,7 @@ function App() {
                   ₹{item.cost}
                 </div>
 
-                <div class="text-bold-gray-700 w-24 text-right">
+                <div class="text-gray-900 font-bold w-24 text-center font-mono h-6 ">
                   ₹{item.quantity * item.cost}
                 </div>
               </div>
