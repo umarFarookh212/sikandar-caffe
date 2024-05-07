@@ -133,6 +133,7 @@ function App() {
         {/*  */}
         {/* mobile app */}
         {/*  */}
+        {/*  */}
         <div class="grid grid-cols-1 gap-2 md:hidden min-w-full border-2 border-indigo-900 rounded-2xl p-2 shadow-indigo-950/45">
           <div class="backdrop-blur-sm bg-white/50 space-y-2 p-2 rounded-xl shadow-indigo-400/90 border-2 border-indigo-900 sticky top-3 text-green-800 font-bold">
             <div>Total Quantity : {quantity}</div>
